@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Heroku-Express-Polymer-scaffold</title>
+  <script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="/pages.js"></script>
+
+  <link rel="import" href="/bower_components/polymer/polymer.html">
+
+  <link rel="import" href="/elements/app-theme.html">
+
+  <link rel="import" href="/elements/app-router.html">
+  <link rel="import" href="/elements/html-page.html">
+  <link rel="import" href="/elements/navigate-to.html">
+
+</head>
+<body>
+  <template is="dom-bind" id="app">
+    <header>
+      <a is="navigate-to" href="/">
+        <h1>Heroku-Express-Polymer-scaffold</h1>
+      </a>
+    </header>
+    <main>
+      <html-page html="{{page.html}}"></html-page>
+    </main>
+    <footer>
+      <div>
+        <p>© 2015 &mdash; New Atoms</p>
+      </div>
+      <div>
+        <nav>
+          <h2>Every page</h2>
+          <ul>
+            <template is="dom-repeat" items="{{pages}}">
+              <li>
+                <a is="navigate-to" href="{{pageUrl(item)}}">{{item.title}}</a>
+              </li>
+            </template>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+  </template>
+</body>
+<script>
+  app = window.app
+  app.pages = pages
+  app.pageUrl = function (item) {
+    return '/pages/' + item.name
+  }
+</script>
+</html>

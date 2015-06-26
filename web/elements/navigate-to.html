@@ -1,0 +1,36 @@
+<!-- Copyright (C) 2014 Erik Ringsmuth - MIT license -->
+<script type="text/javascript">
+// smooth scrolling from http://codereview.stackexchange.com/questions/13111/smooth-page-scrolling-in-javascript
+
+var smoothScrollTo = (function () {
+  var timer, start, factor;
+
+  return function (target, duration) {
+    var offset = window.pageYOffset,
+        delta  = target - window.pageYOffset; // Y-offset difference
+    duration = duration || 1000;              // default 1 sec animation
+    start = Date.now();                       // get start time
+    factor = 0;
+
+    if( timer ) {
+      clearInterval(timer); // stop any running animation
+    }
+
+    function step() {
+      var y;
+      factor = (Date.now() - start) / duration; // get interpolation factor
+      if( factor >= 1 ) {
+        clearInterval(timer); // stop animation
+        factor = 1;           // clip to max 1.0
+      }
+      y = factor * delta + offset;
+      window.scrollBy(0, y - window.pageYOffset);
+    }
+
+    timer = setInterval(step, 10);
+    return timer; // return the interval timer, so you can clear it elsewhere
+  };
+}());
+
+!function(){function t(t){if(!t.ctrlKey&&!t.metaKey&&2!==t.which){var e=this.getAttribute("href");smoothScrollTo(0, 500);if(0!==e.indexOf("http")||window.location.host===new URL(e).host){window.history.pushState(JSON.parse(this.getAttribute("state")),this.getAttribute("title"),e);try{var n=new PopStateEvent("popstate",{bubbles:!1,cancelable:!1,state:window.history.state});"dispatchEvent_"in window?window.dispatchEvent_(n):window.dispatchEvent(n)}catch(i){var a=document.createEvent("CustomEvent");a.initCustomEvent("popstate",!1,!1,{state:window.history.state}),window.dispatchEvent(a)}t.preventDefault()}}}var e=Object.create(HTMLAnchorElement.prototype);e.createdCallback=function(){this.addEventListener("click",t,!1)},e.detachedCallback=function(){this.removeEventListener("click",t,!1)},document.registerElement("navigate-to",{prototype:e,"extends":"a"})}();
+</script>

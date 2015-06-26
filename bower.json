@@ -1,0 +1,22 @@
+{
+  "name": "Heroku-Polymer-Express-scaffold",
+  "version": "1.0.0",
+  "homepage": "https://github.com/NewAtoms/Heroku-Polymer-Express-scaffold",
+  "authors": [
+    "Boris van Hoytema <i@bvh.me>"
+  ],
+  "description": "A scaffold for building rapidly deployable apps and sites",
+  "main": "main.js",
+  "license": "None",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "~1.0.4",
+    "page": "visionmedia/page.js#~1.6.3"
+  }
+}

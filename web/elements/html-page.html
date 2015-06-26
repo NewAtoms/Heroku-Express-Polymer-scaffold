@@ -1,0 +1,22 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/elements/app-theme.html">
+
+<dom-module id="html-page">
+  <template>
+  <style>
+    article#contents img {
+      max-width: 100%;
+    }
+  </style>
+    <article id="contents" inner-h-t-m-l="{{html}}"></article>
+  </template>
+  <script>
+    Polymer({
+      is: "html-page",
+      properties: {
+        html: String
+      }
+    });
+
+  </script>
+</dom-module>
